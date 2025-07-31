@@ -1,0 +1,98 @@
+#define a project name that will be used to name output files
+project:
+
+##define sample and barcode information to create config file
+#sample_species only support human and mouse
+#sample_type support auto and manual for different sequencing library construction strategy 
+#sample_id should be set as a single number (corresponding to the auto sample_type, range 1-12) or multiple numbers separated by commas (corresponding to the manual sample_type, range 1-24)
+sample:
+  sample_species: human #human or mouse
+  sample_type: auto #auto or manual
+  sample_id: 1 #1 for auto sample_type or '20,21,22,23,24' for manual sample_type, 
+
+
+#Sequencing File Inputs:
+#For each input file, make one list object & define path and barcode ranges
+#base definition vocabulary: BC(n) UMI(n) cDNA(n).
+#Barcode range definition needs to account for all ranges. You can give several comma-separated ranges for BC & UMI sequences, eg. BC(1-6,20-26)
+#you can specify between 1 and 4 input files
+sequence_files:
+  file1:
+    name: #path to first file
+    base_definition:
+      - cDNA(11-100) #example: cDNA(11-100)
+      - UMI(1-10) #example: UMI(1-10)
+  file2:
+    name:  #path to second file
+    base_definition:
+      - cDNA(1-100) #example: cDNA(1-100)
+      - BC(101-120) #example: BC(101-120)
+
+
+#reference genome setup
+reference:
+  STAR_index: #path to STAR genome index
+  GTF_file: #path to gene annotation file in GTF format
+  additional_files: ~ 
+  additional_STAR_params: '--clip3pAdapterSeq CTGTCTCTTATACACATCT'
+
+#output directory
+out_dir: #specify the full path to the output directory，must be a directory that currently does not exist
+
+#suit for MGI chemistry 
+chemistry: MGI
+
+###########################################
+#below, you may optionally change default parameters
+###########################################
+
+#number of processors to use
+num_threads: 30
+mem_limit: 400 #Memory limit in Gigabytes, null meaning unlimited RAM usage.
+
+#barcode & UMI filtering options
+#number of bases under the base quality cutoff that should be filtered out.
+#Phred score base-cutoff for quality control.
+filter_cutoffs:
+  BC_filter:
+    num_bases: 4
+    phred: 5
+  UMI_filter:
+    num_bases: 3
+    phred: 5
+
+#Options for Barcode handling
+#You can give either number of top barcodes to use or give an annotation of cell barcodes.
+#If you leave both barcode_num and barcode_file empty, zUMIs will perform automatic cell barcode selection for you!
+barcodes:
+  barcode_num: ~
+  automatic: no 
+  BarcodeBinning: 1 #Hamming distance binning of close cell barcode sequences.
+  nReadsperCell: 1 #Keep only the cell barcodes with atleast n number of reads.
+  demultiplex: no #produce per-cell demultiplexed bam files.
+
+#Options related to counting of reads towards expression profiles
+counting_opts:
+  introns: yes #can be set to no for exon-only counting.
+  downsampling: '10000,20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,240000,280000,320000,350000,400000' #Number of reads to downsample to. This value can be a fixed number of reads (e.g. 10000) or a series of numbers separated by commas (e.g. 100000,120000,140000,160000) Barcodes with less than <d> will not be reported. 0 means adaptive downsampling.
+  strand: 1 #Is the library stranded? 0 = unstranded, 1 = positively stranded, 2 = negatively stranded
+  Ham_Dist: 1 #Hamming distance collapsing of UMI sequences.
+  velocyto: no #Would you like velocyto to do counting of intron-exon spanning reads
+  primaryHit: yes #Do you want to count the primary Hits of multimapping reads towards gene expression levels?
+  twoPass: no #perform basic STAR twoPass mapping
+
+#produce stats files and plots?
+make_stats: yes
+
+#Start zUMIs from stage. Possible TEXT(Filtering, Mapping, Counting, Summarising). Default: Filtering.
+which_Stage: Filtering
+
+#define dependencies program paths
+samtools_exec: samtools 
+Rscript_exec: Rscript 
+STAR_exec: STAR 
+pigz_exec: pigz 
+zUMIs_directory: path to zUMIs # must be set as the path for zUMIs provided by this repository
+
+#below, fqfilter will add a read_layout flag defining SE or PE
+read_layout: PE
