@@ -2,13 +2,13 @@
 ## Usage:  
 ###    Step1: Prerequisites  
 ####        Make sure you are using Python3 and have Pyyaml installed. If not, use the following command to install it:  
-           pip install PyYAML  
+            pip install PyYAML  
 ###    Step2: Clone repository   
 ####        Use the following command to clone the repository:  
             git clone https://github.com/Yzh25/Mhsflt_toolkit.git  
 ###    Step3: Release environment   
 ####        Once you have cloned the repository, navigate to the root directory of the project and run following command to release environment:  
-           sh release_env.sh  
+            sh release_env.sh  
 ###    Step4: Build reference index  
 ####        Download genome sequence fasta file and gene annotation gtf file from GENCODE (www.gencodegenes.org) and build genome index use STAR in following path:   
             /path/to/local/repository/zUMIs-env/bin/STAR  
