@@ -1,8 +1,8 @@
 # Mhsflt(MGIEasy high sensitive full-length transcriptome) analysis toolkit  
 ## Usage:  
-  ###    Step1: Prerequisites  
-    ####        Make sure you are using Python3 and have Pyyaml installed. If not, use the following command to install it:  
-      #####            pip install PyYAML  
+###    Step1: Prerequisites  
+####        Make sure you are using Python3 and have Pyyaml installed. If not, use the following command to install it:  
+#####            `pip install PyYAML`  
 ###    Step2: Clone repository   
 ####        Use the following command to clone the repository:  
 #####            git clone https://github.com/Yzh25/Mhsflt_toolkit.git  
