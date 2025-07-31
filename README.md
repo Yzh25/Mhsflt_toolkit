@@ -5,7 +5,7 @@
 #####            pip install PyYAML  
 ###    Step2: Clone   
 ####        Use the following command to clone the repository:  
-#####            git clone https://gitee.com/zy125442548/mhsflt_toolkit.git  
+#####            git clone https://github.com/Yzh25/Mhsflt_toolkit.git  
 ###    Step3: Release environment   
 ####        Once you have cloned the repository, navigate to the root directory of the project and run following command to release environment:  
 #####            sh release_env.sh  
