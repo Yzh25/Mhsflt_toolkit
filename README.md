@@ -18,4 +18,4 @@
 ####        Use following command to run analysis pipeline:  
             python3 /path/to/local/repository/run_analysis_pipeline.py -y your_config.yaml  
 ###    Step6: Check results  
-####        Check analysis results in 'out_dir(definded in your_config.yaml)/results' directory.  
+####        Check analysis results in 'out_dir(defind in your_config.yaml)/results' directory.  
