@@ -18,3 +18,5 @@ unset PYTHONPATH
 unset PYTHONHOME
 source ${zumisenv}/bin/activate
 conda-unpack
+
+echo "environment release finish"
