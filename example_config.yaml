@@ -31,7 +31,7 @@ sequence_files:
 
 #reference genome setup
 reference:
-  STAR_index: #path to STAR genome index
+  STAR_index: #path to STAR genome index directory
   GTF_file: #path to gene annotation file in GTF format
   additional_files: ~ 
   additional_STAR_params: '--clip3pAdapterSeq CTGTCTCTTATACACATCT'
