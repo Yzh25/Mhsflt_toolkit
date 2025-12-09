@@ -55,7 +55,7 @@ if(any(grepl(pattern = "ATTGCGCAATG",x = unlist(opt$sequence_files))) | opt$chem
   }else{
     bc_filepath <- paste0(opt$out_dir,"/zUMIs_output/",opt$project,"kept_barcodes.txt")
   }
-  system(paste(script_filepath,'--bam',bam_filepath,'--bcs',bc_filepath,'--p',opt$num_threads,"&"))
+  system(paste(script_filepath,'--bam',bam_filepath,'--bcs',bc_filepath,'--p',opt$num_threads))
 }
 
 # GeneCounts --------------------------------------------------------------
