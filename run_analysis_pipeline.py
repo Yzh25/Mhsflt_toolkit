@@ -125,8 +125,9 @@ def process_fq(data):
     if sample_type == 'manual':
         out_fq2_name = f'{fq2_name}.process.fq.gz'
         ham_dist=data['barcodes']['BarcodeBinning']
+        threads=data['num_threads']
         print('Process fastq binning......', flush=True)
-        process_status = subprocess.run([f'{script_path}/transfer_barcode -i {fq2} -l {out_path}/config/expect_barcode.tsv -o {out_fq2_name} -d {ham_dist} -p {out_path}/data'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+        process_status = subprocess.run([f'{script_path}/transfer_barcode -i {fq2} -l {out_path}/config/expect_barcode.tsv -o {out_fq2_name} -d {ham_dist} -p {out_path}/data -t {threads} -e {script_path}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
         stdout = process_status.stdout
         stderr = process_status.stderr
         returncode = process_status.returncode
